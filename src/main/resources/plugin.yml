@@ -1,0 +1,8 @@
+name: CustomSkills
+version: '1.0'
+main: org.rokas.customSkills.CustomSkills
+api-version: '1.21'
+commands:
+  skills:
+    aliases: sk
+    description: Opens the CustomSkills GUI
