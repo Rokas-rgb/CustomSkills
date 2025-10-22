@@ -1,13 +1,14 @@
-//package org.rokas.customSkills.Listeners;
+package org.rokas.customSkills.Listeners;
 
-//import org.bukkit.ChatColor;
-//import org.bukkit.event.EventHandler;
-//import org.bukkit.event.Listener;
-//import org.bukkit.event.inventory.InventoryClickEvent;
-//import org.bukkit.event.inventory.InventoryDragEvent;
-//import org.rokas.customSkills.GUI.SkillsGUI;
+import org.bukkit.ChatColor;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryDragEvent;
+import org.bukkit.inventory.Inventory;
+import org.rokas.customSkills.GUI.SkillsGUI;
 
-//public class GUIListener implements Listener {
+public class GUIListener implements Listener {
 
     private SkillsGUI gui;
 
@@ -19,23 +20,26 @@
     @EventHandler
     public void onInventoryClick(InventoryClickEvent e) {
 
-        if(e.getView().getTitle().equalsIgnoreCase(ChatColor.BLUE + "Skills")) {
+        Inventory top = e.getView().getTopInventory();
+
+        if(top.getHolder() instanceof SkillsGUI) {
             e.setCancelled(true);
-
-            if(e.getCurrentItem() == null) return;
-
-            switch(e.getSlot()) {
-                case 26:
-                    e.getWhoClicked().closeInventory();
-                    break;
-            }
         }
     }
 
     @EventHandler
     public void onInventoryDrag(InventoryDragEvent e) {
-        if(e.getView().getTitle().equalsIgnoreCase(ChatColor.BLUE + "Skills")) {
+        Inventory top = e.getView().getTopInventory();
+
+        if(top.getHolder() instanceof SkillsGUI) {
             e.setCancelled(true);
+        }
+    }
+
+    @EventHandler
+    public void onBarrierClick(InventoryClickEvent e) {
+        if (e.getSlot() == 26) {
+            e.getWhoClicked().closeInventory();
         }
     }
 }
