@@ -6,14 +6,18 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.rokas.customSkills.GUI.SkillsGUI;
+import org.rokas.customSkills.Managers.GUIManager;
+import org.rokas.customSkills.Managers.SkillManager;
 
 
 public class GUICommand implements CommandExecutor {
 
-    private final SkillsGUI gui;
+    private final GUIManager guiManager;
+    private final SkillManager skillManager;
 
-    public GUICommand(SkillsGUI gui) {
-        this.gui = gui;
+    public GUICommand(GUIManager guiManager, SkillManager skillManager) {
+        this.guiManager = guiManager;
+        this.skillManager = skillManager;
     }
 
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -26,8 +30,8 @@ public class GUICommand implements CommandExecutor {
 
                 }
 
-                Player p = (Player) sender;
-                p.openInventory(gui.getInv());
+                Player player = (Player) sender;
+                guiManager.openSkillsGUI(player);
                 return true;
             }
         return true;

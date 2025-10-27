@@ -1,4 +1,4 @@
-package org.rokas.customSkills;
+package org.rokas.customSkills.Models;
 
 public enum SkillTypes {
     MINING,
