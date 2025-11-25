@@ -24,11 +24,15 @@ public class GUIManager {
 
     public void refreshIfOpen(Player player) {
         SkillsGUI gui = openGUIs.get(player.getUniqueId());
-        if (gui != null) {
-            gui.refresh();
-            player.openInventory(gui.getInventory());
-            }
+        if (gui == null) return;
+
+        if (player.getOpenInventory().getTopInventory().getHolder() == gui) {
+        gui.refresh();
+        } else {
+            openGUIs.remove(player.getUniqueId());
         }
+    }
+
     public void close(Player player) {
         openGUIs.remove(player.getUniqueId());
     }

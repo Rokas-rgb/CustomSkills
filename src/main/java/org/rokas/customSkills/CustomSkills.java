@@ -28,7 +28,7 @@ public final class CustomSkills extends JavaPlugin implements Listener {
 
         //Listeners
         getServer().getPluginManager().registerEvents(this, this);
-        getServer().getPluginManager().registerEvents(new GUIListener(), this);
+        getServer().getPluginManager().registerEvents(new GUIListener(guiManager), this);
         getServer().getPluginManager().registerEvents(new MiningListener(skillManager), this);
         getServer().getPluginManager().registerEvents(new FightingListener(), this);
         getServer().getPluginManager().registerEvents(new FishingListener(), this);

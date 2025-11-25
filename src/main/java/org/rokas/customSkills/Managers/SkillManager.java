@@ -2,6 +2,7 @@ package org.rokas.customSkills.Managers;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.rokas.customSkills.CustomSkills;
+import org.rokas.customSkills.GUI.SkillsGUI;
 import org.rokas.customSkills.Models.PlayerData;
 import org.rokas.customSkills.Models.SkillTypes;
 
@@ -44,7 +45,8 @@ public class SkillManager {
         savePlayerData(uuid);
 
         Player player = Bukkit.getPlayer(uuid);
-        if (player != null && player.isOnline()) {
+        if (player != null && player.isOnline() && player.getOpenInventory().getTopInventory().getHolder() instanceof SkillsGUI)
+        {
             CustomSkills plugin = CustomSkills.getInstance();
             plugin.getGuiManager().refreshIfOpen(player);
         }
