@@ -58,7 +58,7 @@ public class SkillsGUI implements InventoryHolder {
             miningLore = new ArrayList<>();
             miningLore.add(ChatColor.WHITE + "--------------------");
             miningLore.add(ChatColor.GRAY + "Level: " + ChatColor.GREEN + miningLevel);// Add the level later
-            miningLore.add(ChatColor.GRAY + "XP: " + ChatColor.GREEN + String.format("%.1f", requiredXp));
+            miningLore.add(ChatColor.GRAY + "XP: " + ChatColor.GREEN + String.format("%.1f", miningXp) + ChatColor.GRAY + " / " + ChatColor.GREEN + String.format("%.1f", requiredXp));
             meta.setUnbreakable(true);
             meta.addItemFlags(ItemFlag.HIDE_UNBREAKABLE);
             meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
