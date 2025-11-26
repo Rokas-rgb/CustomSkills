@@ -2,6 +2,7 @@ package org.rokas.customSkills.Managers;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.rokas.customSkills.CustomSkills;
+import org.rokas.customSkills.Events.SkillLevelUpEvent;
 import org.rokas.customSkills.GUI.SkillsGUI;
 import org.rokas.customSkills.Models.PlayerData;
 import org.rokas.customSkills.Models.SkillTypes;
@@ -33,6 +34,8 @@ public class SkillManager {
 
     public void addXp(UUID uuid, SkillTypes skill, double amount) {
         PlayerData playerData = getPlayerData(uuid);
+
+        int oldLevel = playerData.getLevel(skill);
         playerData.addXP(skill, amount);
 
         double currentXp = playerData.getXP(skill);
@@ -43,6 +46,22 @@ public class SkillManager {
             playerData.levelUp(skill);
         }
         savePlayerData(uuid);
+
+        int newLevel = playerData.getLevel(skill);
+        boolean leveledUp = newLevel > oldLevel;
+
+        savePlayerData(uuid);
+
+        Player player = Bukkit.getPlayer(uuid);
+
+        if (player != null && player.isOnline()) {
+            CustomSkills plugin = CustomSkills.getInstance();
+            plugin.getGuiManager().refreshIfOpen(player);
+
+            if (leveledUp) {
+                Bukkit.getPluginManager().callEvent(new SkillLevelUpEvent(player, skill, newLevel));
+            }
+        }
 
         Player player = Bukkit.getPlayer(uuid);
         if (player != null && player.isOnline() && player.getOpenInventory().getTopInventory().getHolder() instanceof SkillsGUI)
