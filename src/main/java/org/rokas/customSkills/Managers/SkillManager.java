@@ -63,7 +63,6 @@ public class SkillManager {
             }
         }
 
-        Player player = Bukkit.getPlayer(uuid);
         if (player != null && player.isOnline() && player.getOpenInventory().getTopInventory().getHolder() instanceof SkillsGUI)
         {
             CustomSkills plugin = CustomSkills.getInstance();
