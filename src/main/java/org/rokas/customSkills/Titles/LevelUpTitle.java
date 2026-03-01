@@ -13,7 +13,7 @@ public class LevelUpTitle {
         this.skillData = skillData;
     }
 
-    public void sendTitle(Audience target){
+    public void sendTitle(){
 
     }
 
