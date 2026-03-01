@@ -40,6 +40,8 @@ public class SkillManager {
 
         if (currentXp >= requiredXp) {
             playerData.levelUp(skill);
+
+
         }
         savePlayerData(uuid);
 
