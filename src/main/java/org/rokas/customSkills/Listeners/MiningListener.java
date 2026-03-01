@@ -36,6 +36,8 @@ public MiningListener(SkillManager skillManager) {
             player.sendMessage(ChatColor.GREEN + "You got 5 exp towards your mining skill!");
         }
 
+        if (type.name().endsWith("_GRASS")) return;
+
         else if (type == Material.ANCIENT_DEBRIS) {
             skillManager.addXp(player.getUniqueId(), SkillTypes.MINING, debrisXp);
             player.sendMessage(ChatColor.GREEN + "You got 25 exp towards your mining skill!");
